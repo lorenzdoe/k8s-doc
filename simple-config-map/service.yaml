@@ -1,0 +1,39 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: my-webserver
+  labels:
+    app: my-webserver
+spec:
+  containers:
+  - name: my-webserver
+    image: nginx
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: my-service
+spec:
+  selector:
+    app: my-webserver
+  ports:
+    # webserver runs on port 80
+  - port: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: my-ingress
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: my-service
+            port:
+              number: 80
+    host: my-webserver.127.0.0.1.nip.io
+---

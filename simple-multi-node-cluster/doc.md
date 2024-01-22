@@ -42,6 +42,10 @@ The pod is the smallest instance, running the http-echo docker image
 ### Service 
 A Service in Kubernetes is an abstraction that defines a logical set of Pods and a policy for accessing them. Services allow to expose a set of Pods as a network service with a stable IP address and DNS name. This abstraction enables other parts of the application to access the service without needing to know the specific IP addresses of the individual Pods.
 
+The `spec: selector:` field is used to determine which Pods will be targeted by this Service. In this case, the Service will target all Pods that have a label of `app` with the value `my-app`. This is how the Service knows which Pods to send network traffic to.
+
+The `ports:` field under `spec:` defines the ports that this Service will listen on. In this case, it's listening on port 5678. Any network traffic that hits this Service on port 5678 will be forwarded to the Pods selected by the `app: my-app` selector, on their respective ports.
+
 ### Ingress
 An Ingress is an API object that provides HTTP and HTTPS routing to services based on rules defined in the configuration. It acts as an entry point for external traffic into cluster, allowing to define how requests should be directed to different services. Ingress controllers, which are typically implemented by third-party providers or cloud platforms, manage the actual routing and load balancing based on the rules specified in the Ingress resource.
 

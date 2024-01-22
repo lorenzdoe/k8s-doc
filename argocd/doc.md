@@ -24,13 +24,13 @@ kubectl get svc
 
 ### define ingress rule
 
-[yaml file](../argocd_ingress.yaml)
+[yaml file](argocd_ingress.yaml)
 
 ```bash
 kubectl apply -f argocd_ingress.yaml
 ```
 
-problem: when visiting localhost/argocd i get 'too many redirects'
+problem: when visiting argocd.127.0.0.1.nip.io i get 'too many redirects'
 
 https://github.com/argoproj/argo-cd/issues/2953 <br>
 "The problem is that by default Argo-CD handles TLS termination itself and always redirects HTTP requests to HTTPS. Combine that with an ingress controller that also handles TLS termination and always communicates with the backend service with HTTP and you get Argo-CD's server always responding with a redirects to HTTPS."

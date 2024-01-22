@@ -8,6 +8,13 @@ spec:
   containers:
   - name: my-webserver
     image: nginx
+    volumeMounts:
+    - name: nginx-config-volume
+      mountPath: /usr/share/nginx/html
+  volumes:
+  - name: nginx-config-volume
+    configMap:
+      name: nginx-config
 ---
 kind: Service
 apiVersion: v1

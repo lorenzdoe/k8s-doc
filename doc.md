@@ -7,6 +7,7 @@ Prerequisites:
 [Documentation](https://kind.sigs.k8s.io/docs/user/quick-start/)
 
 ## Commands
+some basic commands to get started with kind
 
 create cluster
 ```bash
@@ -34,7 +35,6 @@ kind get nodes
 ```
 
 ## Kubectl
-
 Any kubectl command interacts with a kubernetes cluster. The cluster that kubectl interacts with is determined by the kubeconfig file, located in '$HOME\cube\config'. The kubeconfig file contains the address of the cluster and the credentials to access it.
 
 View current active context
@@ -51,38 +51,6 @@ Apply a configuration to a cluster
 ```bash
 kubectl apply -f <config-file>
 ```
-
-## Custom config.yml
-multi-node cluster:
-https://kind.sigs.k8s.io/docs/user/quick-start/#multi-node-clusters
-
-Single node cluster with custom config:
-Configuration for Ingress Controller
-```yaml
-kind: Cluster
-apiVersion: kind.x-k8s.io/v1alpha4
-name: dev
-nodes:
-- role: control-plane
-  kubeadmConfigPatches:
-  - |
-    kind: InitConfiguration
-    nodeRegistration:
-      kubeletExtraArgs:
-        node-labels: "ingress-ready=true"
-  extraPortMappings:
-  - containerPort: 80
-    hostPort: 9080 
-    protocol: TCP
-  - containerPort: 443
-    hostPort: 9443
-    protocol: TCP
-```
-
-This will create a cluster with a control-plane node that has the following properties:
-- a node label of ingress-ready=true
-- a static mapping of container port 80 to host port 9080
-- a static mapping of container port 443 to host port 9443
 
 ## Kubernetes Components
 - <b>[Overview](https://kubernetes.io/docs/concepts/overview/components/)</b><br>
@@ -101,10 +69,13 @@ The control-plane node is a Kubernetes node with a control-plane role A control-
 - kube-proxy
 - CoreDNS
 
-
 ### worker node
 The worker node is a Kubernetes node with a worker role. A worker role means that the node can run application workloads.
 
-## kubernetes kind hands on
-https://www.baeldung.com/ops/kubernetes-kind
+## Hands on - Create a cluster
+Create a simple multi node cluster with ingress controller and web server
+[Hands on](simple-multi-node-cluster/doc.md)
 
+## Hands On - ArgoCD
+Argo CD is a declarative continuous delivery tool for Kubernetes. It can be used as a standalone tool or as a part of your CI/CD workflow to deliver needed resources to your clusters.
+[Hands on](argocd/doc.md)

@@ -1,8 +1,16 @@
-# Cluster with ingress controller and http-echo
+# Multi Node Cluster with ingress controller and simple webserver
+
+https://www.baeldung.com/ops/kubernetes-kind
 
 ## Create multi node cluster with custom config
 
+### Custom config.yml
 create a cluster using [config.yaml](config.yaml). This configuration sets up a multi node cluster whth one control-plane and to worker nodes. It also defines port mappings
+
+This [config.yaml](config.yaml) will create a cluster with a control-plane node that has the following properties:
+- a node label of ingress-ready=true
+- a static mapping of container port 80 to host port 9080
+- a static mapping of container port 443 to host port 9443
 
 ```bash
 kind create cluster --config config.yaml
@@ -59,4 +67,3 @@ To determine specific nodes where the pod is scheduled
 ```bash
 kubectl get pods -o wide
 ```
-

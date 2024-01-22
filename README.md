@@ -1,8 +1,9 @@
-# Kubernetes starter documentation
-## Kubernetes in Docker (KIND)
-
+# Kubernetes starter
 This is a collection of resources and instructions to help getting started with Kubernetes and KIND.
 
+## Kubernetes in Docker (KIND)
+
+Kubernetes in Docker (KIND) is a tool for running local Kubernetes clusters using Docker container “nodes”. It was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
 
 ### Installation
 ---
